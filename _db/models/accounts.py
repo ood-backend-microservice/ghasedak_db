@@ -20,6 +20,10 @@ class Ghased(CreateHistoryModelMixin, SoftDeleteModelMixin, BaseModel):
         validators=[GhasedakMobileNumberValidator()]
     )
 
+    to_be_removed = models.CharField(
+        max_length=256,
+    )
+
     class Meta:
         verbose_name = 'قاصد'
         verbose_name_plural = 'قاصدها'
