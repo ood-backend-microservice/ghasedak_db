@@ -140,5 +140,3 @@ logs/
 *.retry
 /media
 /static
-
-*.env
