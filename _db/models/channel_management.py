@@ -13,7 +13,7 @@ class ChannelManager(CreateHistoryModelMixin, UpdateHistoryModelMixin, SoftDelet
     concrete_objects = ConcreteActiveManager()
 
     ghased = models.ForeignKey(
-        to='accounts.Ghased',
+        to='_db.Ghased',
         related_name='%(class)s',
         verbose_name='قاصد',
         on_delete=models.PROTECT,
@@ -28,7 +28,7 @@ class ChannelManager(CreateHistoryModelMixin, UpdateHistoryModelMixin, SoftDelet
 
 class ChannelOwner(ChannelManager):
     channel = models.OneToOneField(
-        to='channels.Channel',
+        to='_db.Channel',
         related_name='owner',
         on_delete=models.PROTECT,
         verbose_name='کانال'
@@ -41,7 +41,7 @@ class ChannelOwner(ChannelManager):
 
 class ChannelAdmin(ChannelManager):
     channel = models.ForeignKey(
-        to='channels.Channel',
+        to='_db.Channel',
         related_name='admins',
         on_delete=models.PROTECT,
         verbose_name='کانال'

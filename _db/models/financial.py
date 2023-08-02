@@ -9,7 +9,7 @@ class Wallet(CreateHistoryModelMixin, UpdateHistoryModelMixin, BaseModel):
         pass
 
     ghased = models.OneToOneField(
-        to='accounts.Ghased',
+        to='_db.Ghased',
         related_name='wallet',
         on_delete=models.PROTECT,
         verbose_name='قاصد'
@@ -52,13 +52,13 @@ class Transaction(CreateHistoryModelMixin, BaseModel):
 
 class TransactionEntry(CreateHistoryModelMixin, CreationSensitiveModelMixin, BaseModel):
     wallet = models.ForeignKey(
-        to='financial.Wallet',
+        to='_db.Wallet',
         related_name='entries',
         verbose_name='کیف‌ پول',
         on_delete=models.PROTECT,
     )
     transaction = models.ForeignKey(
-        to='financial.Transaction',
+        to='_db.Transaction',
         related_name='entries',
         verbose_name='تراکنش مربوطه',
         on_delete=models.PROTECT,

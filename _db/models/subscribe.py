@@ -8,14 +8,14 @@ from _db.utility import CreateHistoryModelMixin, SoftDeleteModelMixin, UpdateHis
 
 class Subscriber(CreateHistoryModelMixin, SoftDeleteModelMixin, CreationSensitiveModelMixin, BaseModel):
     channel = models.ForeignKey(
-        to='channels.Channel',
+        to='_db.Channel',
         related_name='subscribers',
         verbose_name='کانال',
         on_delete=models.PROTECT,
     )
 
     ghased = models.ForeignKey(
-        to='accounts.Ghased',
+        to='_db.Ghased',
         related_name='subscribers',
         verbose_name='قاصد',
         on_delete=models.PROTECT,
@@ -41,7 +41,7 @@ class SubscriptionStatus(CreateHistoryModelMixin, UpdateHistoryModelMixin, BaseM
     )
 
     subscriber = models.OneToOneField(
-        to='subscribe.Subscriber',
+        to='_db.Subscriber',
         related_name='subscription_status',
         on_delete=models.CASCADE,
         verbose_name='عضو کانال',
@@ -54,14 +54,14 @@ class SubscriptionStatus(CreateHistoryModelMixin, UpdateHistoryModelMixin, BaseM
 
 class PurchasedSubscription(CreateHistoryModelMixin, CreationSensitiveModelMixin, BaseModel):
     subscription = models.ForeignKey(
-        to='channels.Subscription',
+        to='_db.Subscription',
         related_name='purchased_subscriptions',
         on_delete=models.PROTECT,
         verbose_name='اشتراک',
     )
 
     subscriber = models.ForeignKey(
-        to='subscribe.Subscriber',
+        to='_db.Subscriber',
         related_name='purchased_subscriptions',
         on_delete=models.PROTECT,
         verbose_name='عضو کانال',

@@ -20,7 +20,7 @@ class Channel(CreateHistoryModelMixin, UpdateHistoryModelMixin, SoftDeleteModelM
 
 class ChannelContent(CreateHistoryModelMixin, UpdateHistoryModelMixin, SoftDeleteModelMixin, BaseModel):
     channel = models.ForeignKey(
-        to='channels.Channel',
+        to='_db.Channel',
         related_name='contents',
         verbose_name='کانال',
         on_delete=models.PROTECT,
@@ -58,7 +58,7 @@ class Subscription(CreateHistoryModelMixin, UpdateHistoryModelMixin, SoftDeleteM
     )
 
     channel = models.ForeignKey(
-        to='channels.Channel',
+        to='_db.Channel',
         related_name='subscriptions',
         verbose_name='کانال',
         on_delete=models.PROTECT,
