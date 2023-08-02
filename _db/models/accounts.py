@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from _db.utility import GhasedakMobileNumberValidator
@@ -7,7 +7,7 @@ from _db.utility import CreateHistoryModelMixin, SoftDeleteModelMixin, BaseModel
 
 class Ghased(CreateHistoryModelMixin, SoftDeleteModelMixin, BaseModel):
     user = models.OneToOneField(
-        to=User,
+        to=get_user_model(),
         related_name='ghased',
         on_delete=models.PROTECT,
         verbose_name='کاربر جنگو'
@@ -18,10 +18,6 @@ class Ghased(CreateHistoryModelMixin, SoftDeleteModelMixin, BaseModel):
         verbose_name='شماره همراه',
         unique=True,
         validators=[GhasedakMobileNumberValidator()]
-    )
-
-    to_be_removed = models.CharField(
-        max_length=256,
     )
 
     class Meta:
