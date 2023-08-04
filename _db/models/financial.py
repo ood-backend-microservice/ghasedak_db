@@ -4,9 +4,18 @@ from django.db.models import Sum, F
 from _db.utility import CreateHistoryModelMixin, UpdateHistoryModelMixin, CreationSensitiveModelMixin, BaseModel
 
 
+def get_wallet_upload_to(instance: 'Wallet', filename):
+    return f'wallets/{instance.id}/{filename}'
+
+
 class Wallet(CreateHistoryModelMixin, UpdateHistoryModelMixin, BaseModel):
     class Exception(Exception):
         pass
+
+    pic = models.FileField(
+        upload_to=get_wallet_upload_to,
+        verbose_name='فایل',
+    )
 
     ghased = models.OneToOneField(
         to='_db.Ghased',
