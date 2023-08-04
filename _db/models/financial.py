@@ -15,6 +15,7 @@ class Wallet(CreateHistoryModelMixin, UpdateHistoryModelMixin, BaseModel):
     pic = models.FileField(
         upload_to=get_wallet_upload_to,
         verbose_name='فایل',
+        null=True, blank=True,
     )
 
     ghased = models.OneToOneField(
